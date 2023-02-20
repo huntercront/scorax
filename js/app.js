@@ -63,9 +63,6 @@ l.require(["./js/lazy-load.js"], function () {
 document.addEventListener("DOMContentLoaded", function (event) {
    document.body.classList.remove("loading");
 
-   let last_known_scroll_position = 0;
-   let ticking = false;
-
    function counter(id, start, duration) {
       let obj = id,
          current = start,
@@ -81,19 +78,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
          }, step);
    }
 
+   let last_known_scroll_position = 0;
+   let ticking = false;
    function doSomething(scroll_pos) {
-      animOnScroll();
+      animOnScroll(10);
    }
 
    window.addEventListener("scroll", function (e) {
       last_known_scroll_position = window.scrollY;
-
       if (!ticking) {
          window.requestAnimationFrame(function () {
             doSomething(last_known_scroll_position);
             ticking = false;
          });
-
          ticking = true;
       }
    });
@@ -104,9 +101,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
       aminItems.forEach(function (aminItem) {
          let animItemHeight = aminItem.offsetHeight;
          let animItemOffset = offset(aminItem).top;
-         let animStart = 3;
+         let animStart = 2;
 
          let animItemPoint = window.innerHeight - animItemHeight / animStart;
+         console.log(animItemPoint);
          if (animItemHeight > window.innerHeight) {
             animItemPoint = window.innerHeight - window.innerHeight / animStart;
          }
