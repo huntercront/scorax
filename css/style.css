@@ -386,14 +386,32 @@ html {
    visibility: hidden;
    opacity: 0;
 }
-.animate.fade {
-   opacity: 0;
-   visibility: hidden;
-   transition: 400ms ease-in-out;
-   transform: translate(0, 30%);
+.animate.fade-down,
+.animate.fade-right,
+.animate.fade-left {
+   transition: 500ms ease-in-out;
    transition-property: opacity, visibility, transform;
 }
+.animate.fade-down {
+   transform: translate(0, 5%);
+}
+.animate.fade {
+   transition: 500ms ease-in-out;
+   transition-property: opacity, visibility;
+}
+.animate.fade-right {
+   transform: translate(3%, 0);
+}
+.animate.fade-left {
+   transform: translate(-3%, 0);
+}
 .animate.fade.animate-active {
+   opacity: 1;
+   visibility: visible;
+}
+.animate.fade-down.animate-active,
+.animate.fade-right.animate-active,
+.animate.fade-left.animate-active {
    opacity: 1;
    visibility: visible;
    transform: translate(0, 0%);
@@ -615,6 +633,13 @@ strong {
    line-height: 0.75;
    font-size: 6rem;
    text-align: right;
+}
+.stats-number.fix-plus {
+   margin-right: -0.1025em;
+}
+.count.animate {
+   visibility: visible;
+   opacity: 1;
 }
 .stats-el {
    display: grid;

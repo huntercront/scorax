@@ -59,3 +59,89 @@ l.require(["./js/lazy-load.js"], function () {
       callback_loaded: callback_loaded,
    });
 });
+
+document.addEventListener("DOMContentLoaded", function (event) {
+   document.body.classList.remove("loading");
+
+   let last_known_scroll_position = 0;
+   let ticking = false;
+
+   function counter(id, start, duration) {
+      let obj = id,
+         current = start,
+         range = parseInt(obj.getAttribute("data-num")) - start,
+         increment = parseInt(obj.getAttribute("data-num")) > start ? 1 : -1,
+         step = Math.abs(Math.floor(duration / range)),
+         timer = setInterval(() => {
+            current += increment;
+            obj.textContent = current;
+            if (current == parseInt(obj.getAttribute("data-num"))) {
+               clearInterval(timer);
+            }
+         }, step);
+   }
+
+   function doSomething(scroll_pos) {
+      animOnScroll();
+   }
+
+   window.addEventListener("scroll", function (e) {
+      last_known_scroll_position = window.scrollY;
+
+      if (!ticking) {
+         window.requestAnimationFrame(function () {
+            doSomething(last_known_scroll_position);
+            ticking = false;
+         });
+
+         ticking = true;
+      }
+   });
+
+   const aminItems = document.querySelectorAll(".animate");
+
+   function animOnScroll() {
+      aminItems.forEach(function (aminItem) {
+         let animItemHeight = aminItem.offsetHeight;
+         let animItemOffset = offset(aminItem).top;
+         let animStart = 3;
+
+         let animItemPoint = window.innerHeight - animItemHeight / animStart;
+         if (animItemHeight > window.innerHeight) {
+            animItemPoint = window.innerHeight - window.innerHeight / animStart;
+         }
+         if (
+            pageYOffset > animItemOffset - animItemPoint &&
+            pageYOffset < animItemOffset + animItemHeight
+         ) {
+            if (
+               aminItem.classList.contains("count") &&
+               !aminItem.classList.contains("animate-active")
+            ) {
+               counter(aminItem, 1, aminItem.getAttribute("data-duratation"));
+            } else {
+               if (aminItem.getAttribute("data-delay")) {
+                  aminItem.style.transitionDelay =
+                     aminItem.getAttribute("data-delay") + "ms";
+               }
+            }
+            aminItem.classList.add("animate-active");
+         }
+      });
+   }
+   function offset(el) {
+      const rect = el.getBoundingClientRect(),
+         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      return {
+         top: rect.top + scrollTop,
+         left: rect.left + scrollLeft,
+      };
+   }
+   function doSomething(scroll_pos) {
+      animOnScroll();
+   }
+   setTimeout(() => {
+      animOnScroll();
+   }, 10);
+});
