@@ -21,7 +21,7 @@ html {
 
 @media screen and (max-width: 1024px) {
    html {
-      font-size: var(--font);
+      font-size: calc(var(--font) - 2px);
    }
 }
 
@@ -539,8 +539,45 @@ strong {
 }
 
 @media screen and (max-width: 1024px) {
+   .font-0_85 {
+      font-size: 0.85rem;
+   }
+   .font-1_25 {
+      font-size: 1.15rem;
+   }
+   .font-1_5 {
+      font-size: 1.35rem;
+   }
+   .font-1_75 {
+      font-size: 1.5rem;
+   }
+   .font-2 {
+      font-size: 1.75rem;
+   }
+   .font-2_25 {
+      font-size: 2rem;
+   }
+   .block-title {
+      font-size: 2.75rem;
+   }
 }
-@media screen and (max-width: 524px) {
+@media screen and (max-width: 590px) {
+   .block-title {
+      font-size: 2.25rem;
+      margin-bottom: 2.5rem;
+   }
+   .font-2 {
+      font-size: 1.4285rem;
+   }
+   .font-1_75 {
+      font-size: 1.285rem;
+   }
+   .font-1_5 {
+      font-size: 1.142rem;
+   }
+   .mob-hide {
+      display: none;
+   }
 }
 /* header */
 .header {
@@ -598,6 +635,46 @@ strong {
 .contacts li a:hover {
    opacity: 0.7;
 }
+@media screen and (max-width: 768px) {
+   .header-logo {
+      max-width: 12rem;
+   }
+   .logo-sign {
+      margin-left: 0.75rem;
+      margin-top: 0.825rem;
+   }
+   .header-content .contacts {
+      margin-top: 0.35rem;
+   }
+   .header {
+      padding: 1.5rem 0;
+   }
+}
+@media screen and (max-width: 590px) {
+   .header-content {
+      grid-template-columns: 1fr 6rem;
+      column-gap: 2rem;
+   }
+   .header-content .link-name {
+      display: none;
+   }
+   .header-content .contacts li a .icon {
+      margin: 0;
+   }
+   .header-content .contacts li a {
+      justify-content: center;
+      width: 2.285rem;
+      height: 2.285rem;
+      border-radius: 0.5rem;
+      background: #a169f9;
+   }
+   .header-content .contacts {
+      margin-top: 0;
+   }
+   .header-content .contacts li + li {
+      margin-left: 1rem;
+   }
+}
 /* hero */
 .hero {
    margin-top: 2rem;
@@ -619,7 +696,34 @@ strong {
    display: inline-block;
    margin-bottom: 2rem;
 }
-
+@media screen and (max-width: 1024px) {
+   .hero-content {
+      column-gap: 2rem;
+      align-items: end;
+   }
+}
+@media screen and (max-width: 768px) {
+   .hero-content {
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
+   }
+   .hero-content .lazy-img {
+      max-width: 30rem;
+      margin: 0 auto;
+   }
+   .hero-content .font-2_25 {
+      max-width: none;
+      margin-bottom: 1.5rem;
+   }
+}
+@media screen and (max-width: 524px) {
+   .hero-text {
+      order: 2;
+   }
+   .hero-content .lazy-img {
+      order: 1;
+   }
+}
 /* statistics */
 .stats {
    margin-top: 6rem;
@@ -657,7 +761,46 @@ strong {
 .stats-el + .stats-el {
    margin-top: 2rem;
 }
-
+@media screen and (max-width: 1024px) {
+   .stats-list {
+      padding: 0;
+   }
+}
+@media screen and (max-width: 768px) {
+   .stats-number {
+      font-size: 5rem;
+   }
+   .stats-el {
+      grid-template-columns: 12rem 1fr;
+      padding: 3rem 5rem 3rem 4rem;
+   }
+}
+@media screen and (max-width: 590px) {
+   .stats-number {
+      font-size: 4rem;
+   }
+   .stats-el {
+      grid-template-columns: 10rem 1fr;
+      padding: 2rem 3rem 2rem 3rem;
+   }
+   .stats-el + .stats-el {
+      margin-top: 1.5rem;
+   }
+}
+@media screen and (max-width: 524px) {
+   .stats-number {
+      text-align: left;
+   }
+   .stats-el {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+      border-radius: 3rem;
+      padding: 2rem;
+   }
+   .stats {
+      margin-top: 4rem;
+   }
+}
 /* profit */
 .profit {
    margin: 6rem 0;
@@ -677,6 +820,39 @@ strong {
 .icon-left .profit-content p {
    max-width: 48rem;
 }
+@media screen and (max-width: 768px) {
+   .profit-content {
+      column-gap: 2rem;
+   }
+   .icon-left .profit-content {
+      grid-template-columns: 10rem 1fr;
+   }
+   .icon-right .profit-content {
+      grid-template-columns: 1fr 10rem;
+   }
+}
+@media screen and (max-width: 590px) {
+   .icon-left .profit-content,
+   .icon-right .profit-content {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+   }
+   .profit-content .lazy-img {
+      order: 1;
+      max-width: 10rem;
+   }
+   .profit-content .font-2 {
+      order: 2;
+   }
+   .profit {
+      margin: 5rem 0;
+   }
+}
+@media screen and (max-width: 524px) {
+   .profit-content .lazy-img {
+      max-width: 8rem;
+   }
+}
 /* functions */
 .functions {
    overflow: hidden;
@@ -690,7 +866,7 @@ strong {
 .schema-block::before {
    content: "";
    position: absolute;
-   width: calc(100% + 25vw);
+   width: calc(100% + 50vw);
    height: 100%;
    left: 0;
    top: 0;
@@ -700,7 +876,11 @@ strong {
    border-top-left-radius: 10vw;
    user-select: none;
 }
-
+@media screen and (max-width: 590px) {
+   .schema-block {
+      padding: 3rem 0 3rem 1rem;
+   }
+}
 /* advantages */
 .advantages-list {
    display: grid;
@@ -717,7 +897,30 @@ strong {
    align-items: center;
    border-radius: 8rem;
 }
-
+@media screen and (max-width: 1024px) {
+   .advantages-list {
+      row-gap: 1rem;
+      column-gap: 1rem;
+   }
+   .advantages-el {
+      padding: 2rem 3rem;
+   }
+}
+@media screen and (max-width: 768px) {
+   .advantages-el {
+      padding: 1.25rem 2rem;
+      border-radius: 3rem;
+   }
+}
+@media screen and (max-width: 524px) {
+   .advantages-list {
+      grid-template-columns: 1fr;
+      row-gap: 1.5rem;
+   }
+   .advantages-el {
+      min-height: 10rem;
+   }
+}
 /* footer */
 .footer-content {
    display: grid;
@@ -731,4 +934,42 @@ strong {
 .footer {
    margin-top: 4rem;
    padding: 2rem 0 4rem 0;
+}
+@media screen and (max-width: 1024px) {
+   .footer-content {
+      grid-template-columns: 1fr 12rem 1fr;
+   }
+}
+@media screen and (max-width: 880px) {
+   .footer-content {
+      grid-template-columns: 12rem 12rem 1fr;
+   }
+}
+@media screen and (max-width: 768px) {
+   .footer-content {
+      grid-template-columns: 1fr 2fr;
+      row-gap: 2rem;
+      align-items: end;
+   }
+   .footer-logo {
+      grid-column: span 2;
+   }
+   .address-name {
+      justify-content: flex-start;
+   }
+   .footer {
+      padding: 2rem 0;
+   }
+}
+@media screen and (max-width: 524px) {
+   .footer-content {
+      grid-template-columns: 1fr;
+      row-gap: 1.5rem;
+   }
+   .footer-logo {
+      grid-column: span 1;
+   }
+   .footer-content .contacts {
+      justify-self: start;
+   }
 }
