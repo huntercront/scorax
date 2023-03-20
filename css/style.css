@@ -863,6 +863,73 @@ strong {
    padding: 3.5rem 0rem 3rem 12.5%;
    z-index: 2;
 }
+.schema-el {
+   position: relative;
+   z-index: 10;
+   height: 100%;
+   padding: 0.5rem;
+   order: 5;
+}
+.schema-el.or-6 {
+   order: 6;
+}
+.schema-el.or-7 {
+   order: 7;
+}
+.schema-el.or-8 {
+   order: 8;
+}
+.schema-el.or-9 {
+   order: 9;
+}
+.schema-el.or-10 {
+   order: 10;
+}
+.schema-number {
+   width: 3.75rem;
+   height: 3.75rem;
+   line-height: 1;
+   font-size: 1.5rem;
+   text-align: center;
+   background: var(--violet);
+   border-radius: 3.75rem;
+   border: 2px solid var(--violet-light);
+   margin-left: -2px;
+}
+.schema-el:last-child .schema-number {
+   background: var(--main);
+}
+.has-sub .schema-number {
+   border: 2px solid white;
+   margin: 0;
+}
+.has-sub {
+   cursor: pointer;
+   transition: 250ms ease-in;
+   transition-property: background;
+   border-radius: 0.5rem;
+}
+.has-sub:hover {
+   background: rgba(255, 255, 255, 0.15);
+}
+.zoom-icon {
+   position: absolute;
+   left: 2.5rem;
+   top: 2.5rem;
+   padding: 0.35rem;
+   background: rgba(255, 116, 0, 0.8);
+   border-radius: 2rem;
+   z-index: 10;
+}
+.zoom-icon svg {
+   width: 1.25rem;
+   height: 1.25rem;
+}
+.schema-text {
+   font-size: 1.25rem;
+   margin: 1rem 0 0 0;
+   line-height: 1.25;
+}
 .schema-block::before {
    content: "";
    position: absolute;
@@ -876,11 +943,162 @@ strong {
    border-top-left-radius: 10vw;
    user-select: none;
 }
-@media screen and (max-width: 590px) {
+.schema-inner {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   column-gap: 0.5rem;
+   row-gap: 2rem;
+   position: relative;
+   margin-left: -2rem;
+}
+.schema-inner:before {
+   content: "";
+   position: absolute;
+   width: 100%;
+   height: calc(50% + 2rem);
+   top: 2.25rem;
+   left: 0.5rem;
+   border-top-right-radius: 10rem;
+   border-bottom-right-radius: 10rem;
+   border-top: 2px solid var(--main);
+   border-bottom: 2px solid var(--main);
+   border-right: 2px solid var(--main);
+   display: block;
+}
+
+.modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 500;
+   visibility: hidden;
+   opacity: 0;
+   transform: translate(0, 3rem);
+   pointer-events: none;
+   outline: 0;
+   width: 100%;
+   height: 100%;
+   overflow-x: hidden;
+   overflow-y: auto;
+   background: var(--violet);
+   transition: 0.3s cubic-bezier(0, 0, 0.2, 1);
+   transition-property: visibility, opacity, transform;
+}
+.modal.active {
+   visibility: visible;
+   opacity: 1;
+   transform: translate(0, 0);
+   pointer-events: all;
+}
+.modal-dialog {
+   margin: 2rem auto;
+   min-height: calc(100% - 4rem);
+   display: flex;
+   align-items: center;
+   position: relative;
+   padding: 1.25rem;
+   max-width: 76rem;
+   position: relative;
+}
+.modal-content {
+   width: 100%;
+   position: relative;
+}
+.modal-content .schema-inner {
+   grid-template-columns: repeat(4, 1fr);
+}
+.modal-content .schema-el:last-child {
+   grid-column: span 2;
+}
+.modal-content .schema-inner:before {
+   height: calc(50% + 2.75rem);
+}
+.close-modal {
+   position: absolute;
+   background: transparent;
+   padding: 0.5rem;
+   right: 1rem;
+   top: 1rem;
+   border: 1px solid var(--main);
+   transition: 200ms ease-in;
+   transition-property: border;
+   z-index: 100;
+}
+.close-modal:hover {
+   border: 1px solid white;
+}
+.close-modal svg {
+   width: 1.25rem;
+   height: 1.25rem;
+}
+.close-modal svg path {
+   stroke: var(--main);
+   transition: 200ms ease-in;
+   transition-property: stroke;
+}
+.close-modal:hover svg path {
+   stroke: white;
+}
+@media screen and (max-width: 864px) {
+   .schema-inner {
+      display: flex;
+      overflow-x: auto;
+      margin: 0;
+      column-gap: 0;
+      scroll-snap-type: x mandatory;
+   }
+
+   .schema-inner:after,
+   .schema-inner:before {
+      content: "";
+      display: block;
+      min-width: 1.25rem;
+      width: 1.25rem;
+      height: 1px;
+      border: none;
+   }
+   .schema-el {
+      flex: 0 0 18rem;
+      margin-bottom: 3.5rem;
+      scroll-snap-align: center;
+   }
+   .schema-inner:before {
+      display: none;
+   }
    .schema-block {
-      padding: 3rem 0 3rem 1rem;
+      background: var(--violet-light);
+      margin: 0 -1.25rem;
+      padding: 3.5rem 0 0 0;
+   }
+   .schema-el::after {
+      content: "";
+      position: absolute;
+      top: 2.25rem;
+      width: calc(100% + 0.5rem);
+      border-top: 1px solid var(--main);
+      display: block;
+   }
+   .schema-el:last-child::after {
+      display: none;
+   }
+
+   .schema-number {
+      position: relative;
+      z-index: 4;
+   }
+   .schema-el.or-6,
+   .schema-el.or-7,
+   .schema-el.or-8,
+   .schema-el.or-9,
+   .schema-el.or-10 {
+      order: 5;
+   }
+   .schema-el::before {
+      display: inline;
+      width: 1.25rem;
    }
 }
+
 /* advantages */
 .advantages-list {
    display: grid;

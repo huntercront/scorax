@@ -142,4 +142,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
    setTimeout(() => {
       animOnScroll();
    }, 10);
+
+   let modal = document.querySelector(".modal");
+   let openDetails = document.querySelectorAll(".has-sub");
+   let closeModal = document.querySelector(".close-modal");
+   openDetails.forEach(function (openDetail) {
+      openDetail.addEventListener("click", function (e) {
+         modal.classList.add("active");
+      });
+   });
+   closeModal.addEventListener("click", function (e) {
+      modal.classList.remove("active");
+   });
 });
